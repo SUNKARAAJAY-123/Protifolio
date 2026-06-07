@@ -1,3 +1,9 @@
+Viewed index.html:1-800
+Viewed index.html:801-1074
+
+Here is the complete, updated code for your portfolio site (`index.html`), featuring the 3D card flips, interactive mouse-tracking 3D tilts, dynamic canvas particles, dark mode aesthetics, and integrated LeetCode/GeeksforGeeks profiles with recruiter-friendly CTAs:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,7 +69,7 @@
     letter-spacing: -0.02em;
   }
   .nav-logo span { color: var(--accent); }
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
   .nav-links a {
     color: var(--muted); text-decoration: none; font-size: 0.875rem;
     letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;
@@ -210,6 +216,9 @@
     border: 1px solid var(--border);
     border-radius: 16px; padding: 2rem;
     position: relative; overflow: hidden;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: box-shadow 0.3s, border-color 0.3s;
   }
   .about-card::before {
     content: '';
@@ -243,12 +252,10 @@
   .skill-card {
     background: var(--surface); border: 1px solid var(--border);
     border-radius: 14px; padding: 1.75rem;
-    transition: all 0.3s; position: relative; overflow: hidden;
-  }
-  .skill-card:hover {
-    border-color: var(--border2);
-    transform: translateY(-4px);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    position: relative; overflow: hidden;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: box-shadow 0.3s, border-color 0.3s;
   }
   .skill-card-icon {
     font-size: 1.8rem; margin-bottom: 1rem;
@@ -310,71 +317,100 @@
   }
   .exp-bullets li strong { color: var(--text); font-weight: 500; }
 
-  /* ===== PROJECTS ===== */
+  /* ===== 3D CARD FLIP PROJECTS ===== */
   #projects { }
   .projects-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.5rem; margin-top: 3.5rem;
+    gap: 2rem; margin-top: 3.5rem;
   }
-  .project-card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 16px; padding: 2rem;
-    transition: all 0.3s; position: relative; overflow: hidden;
-    display: flex; flex-direction: column;
+  .project-card-container {
+    perspective: 1500px;
+    height: 380px;
+    cursor: pointer;
   }
-  .project-card::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(circle at 50% 0%, var(--glow), transparent 60%);
-    opacity: 0; transition: opacity 0.4s;
-    pointer-events: none;
+  .project-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1.15);
+    transform-style: preserve-3d;
   }
-  .project-card:hover::after { opacity: 1; }
-  .project-card:hover {
-    border-color: rgba(124,109,255,0.3);
-    transform: translateY(-6px);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+  .project-card-container:hover .project-card-inner {
+    transform: rotateY(180deg);
   }
-  .project-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
-  .project-icon {
-    width: 48px; height: 48px; border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
+  .project-card-front, .project-card-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    padding: 2.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .project-card-front {
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+  .project-card-back {
+    background: var(--bg3);
+    border: 1px solid rgba(124, 109, 255, 0.3);
+    transform: rotateY(180deg);
+    box-shadow: 0 0 40px rgba(124, 109, 255, 0.1);
+  }
+  
+  .project-card-container:hover .project-card-front {
+    border-color: rgba(124, 109, 255, 0.3);
+  }
+
+  .project-card-front .project-name {
     font-size: 1.5rem;
+    margin-bottom: 0.5rem;
   }
-  .project-icon.green { background: var(--glow2); border: 1px solid rgba(79,216,176,0.2); }
-  .project-icon.purple { background: var(--glow); border: 1px solid rgba(124,109,255,0.2); }
+  
+  .project-card-front .project-icon {
+    font-size: 2.5rem;
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  .project-card-front .project-icon.green {
+    background: var(--glow2);
+    border: 1px solid rgba(79, 216, 176, 0.3);
+    box-shadow: 0 0 20px rgba(79, 216, 176, 0.1);
+  }
+  .project-card-front .project-icon.purple {
+    background: var(--glow);
+    border: 1px solid rgba(124, 109, 255, 0.3);
+    box-shadow: 0 0 20px rgba(124, 109, 255, 0.1);
+  }
 
-  .project-links { display: flex; gap: 8px; }
-  .project-link {
-    width: 32px; height: 32px; border-radius: 8px;
-    background: var(--bg3); border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--muted); text-decoration: none; font-size: 0.85rem;
-    transition: all 0.2s;
+  .flip-hint {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    opacity: 0.7;
+    margin-top: 1rem;
+    transition: color 0.3s;
   }
-  .project-link:hover { color: var(--accent); border-color: rgba(124,109,255,0.4); }
+  .project-card-container:hover .flip-hint {
+    color: var(--accent);
+  }
 
-  .project-name {
-    font-family: var(--font-display); font-size: 1.2rem;
-    font-weight: 700; color: var(--text); margin-bottom: 0.4rem;
-  }
-  .project-desc {
-    color: var(--muted); font-size: 0.88rem; line-height: 1.7;
-    flex: 1; margin-bottom: 1.5rem;
-  }
-  .project-metric {
-    font-family: var(--font-mono); font-size: 0.78rem;
-    color: var(--accent2); background: rgba(79,216,176,0.07);
-    border: 1px solid rgba(79,216,176,0.15);
-    padding: 3px 10px; border-radius: 100px;
-    display: inline-block; margin-bottom: 1rem;
-  }
-  .project-stack { display: flex; flex-wrap: wrap; gap: 6px; }
-  .stack-tag {
-    font-family: var(--font-mono); font-size: 0.7rem;
-    padding: 3px 10px; border-radius: 4px;
-    color: var(--accent); background: rgba(124,109,255,0.08);
-    border: 1px solid rgba(124,109,255,0.2);
+  .project-card-back .btn-primary {
+    width: 100%;
+    justify-content: center;
+    margin-top: 1rem;
+    padding: 11px 20px;
+    font-size: 0.88rem;
   }
 
   /* ===== CERTIFICATIONS ===== */
@@ -386,10 +422,11 @@
   .cert-card {
     background: var(--surface); border: 1px solid var(--border);
     border-radius: 12px; padding: 1.5rem;
-    transition: all 0.25s;
     display: flex; gap: 1rem; align-items: flex-start;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: box-shadow 0.3s, border-color 0.3s;
   }
-  .cert-card:hover { border-color: var(--border2); transform: translateY(-3px); }
   .cert-icon {
     width: 40px; height: 40px; border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
@@ -510,6 +547,7 @@
     <li><a href="#projects">Projects</a></li>
     <li><a href="#certifications">Certs</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="#" target="_blank" style="color: var(--accent2); font-weight: 600; border: 1px solid rgba(79, 216, 176, 0.3); padding: 4px 12px; border-radius: 6px; background: rgba(79, 216, 176, 0.05); text-transform: none; font-size: 0.85rem;">Resume ↗</a></li>
   </ul>
 </nav>
 
@@ -528,6 +566,10 @@
       <a href="#projects" class="btn-primary">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6-6-6"/><path d="M12 19h8"/></svg>
         View Projects
+      </a>
+      <a href="#" target="_blank" class="btn-secondary" style="border-color: rgba(79, 216, 176, 0.4); color: var(--accent2); background: rgba(79, 216, 176, 0.03);">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+        Resume ↗
       </a>
       <a href="mailto:sunkaraajay66@gmail.com" class="btn-secondary">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -571,12 +613,18 @@
         <p>I'm a <strong>B.Tech student in Artificial Intelligence & Data Science</strong> at Seshadri Rao Gudlavalleru Engineering College, Andhra Pradesh — maintaining a CGPA of 8.51/10 while building real-world solutions.</p>
         <p>My work spans the full spectrum: from <strong>React front-ends</strong> to <strong>Node.js backends</strong>, from <strong>ML pipelines</strong> to <strong>Firebase-powered platforms</strong>. I have deployed production systems, worked in Agile teams, and impacted over 200 farmers through tech.</p>
         <p>Beyond code, I'm a <strong>Guinness World Record holder</strong> (AI Agent Hackathon), a GeeksforGeeks Campus Mantri ambassador, and a volleyball & tennis enthusiast — because the best engineers build teams as well as systems.</p>
-        <div class="hero-ctas" style="margin-top: 1.5rem;">
+        <div class="hero-ctas" style="margin-top: 1.5rem; flex-wrap: wrap;">
           <a href="https://github.com/SUNKARAAJAY-123" target="_blank" class="btn-secondary" style="font-size:0.85rem; padding: 10px 20px;">
             GitHub ↗
           </a>
           <a href="https://linkedin.com/in/ajay-sunkara" target="_blank" class="btn-secondary" style="font-size:0.85rem; padding: 10px 20px;">
             LinkedIn ↗
+          </a>
+          <a href="https://leetcode.com/u/sunkaraajay/" target="_blank" class="btn-secondary" style="font-size:0.85rem; padding: 10px 20px;">
+            LeetCode ↗
+          </a>
+          <a href="https://www.geeksforgeeks.org/profile/sunkaraajay?tab=activity" target="_blank" class="btn-secondary" style="font-size:0.85rem; padding: 10px 20px;">
+            GeeksforGeeks ↗
           </a>
         </div>
       </div>
@@ -713,42 +761,73 @@
       <p class="section-subtitle">Production-ready systems solving real problems, not just demos.</p>
     </div>
     <div class="projects-grid">
-      <div class="project-card reveal reveal-delay-1">
-        <div class="project-top">
-          <div class="project-icon green">🌾</div>
-          <div class="project-links">
-            <a href="https://github.com/SUNKARAAJAY-123" target="_blank" class="project-link" title="GitHub">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+      <!-- Project 1 -->
+      <div class="project-card-container reveal reveal-delay-1">
+        <div class="project-card-inner">
+          <!-- FRONT -->
+          <div class="project-card-front">
+            <div>
+              <div class="project-icon green">🌾</div>
+              <h3 class="project-name">Kisan Dost</h3>
+              <div class="project-metric">200+ Farmers · 30% Latency Reduction</div>
+            </div>
+            <div class="flip-hint">
+              <span>Hover to flip for details</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+            </div>
+          </div>
+          <!-- BACK -->
+          <div class="project-card-back">
+            <div>
+              <h4 style="font-family: var(--font-display); font-size: 1.1rem; color: var(--accent2); margin-bottom: 0.8rem;">Project Details</h4>
+              <p class="project-desc">Full-stack agricultural insights platform delivering real-time weather data, AI-powered crop recommendations, and market analytics. Integrated Firebase Realtime Database with modular ReactJS architecture for scalability.</p>
+              <div class="project-stack" style="margin-top: 1.2rem;">
+                <span class="stack-tag">JavaScript</span>
+                <span class="stack-tag">ReactJS</span>
+                <span class="stack-tag">Firebase</span>
+                <span class="stack-tag">REST API</span>
+              </div>
+            </div>
+            <a href="https://github.com/SUNKARAAJAY-123" target="_blank" class="btn-primary">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+              View on GitHub
             </a>
           </div>
-        </div>
-        <div class="project-name">Kisan Dost</div>
-        <div class="project-metric">200+ Farmers · 30% Latency Reduction</div>
-        <p class="project-desc">Full-stack agricultural insights platform delivering real-time weather data, AI-powered crop recommendations, and market analytics. Integrated Firebase Realtime Database with modular ReactJS architecture for scalability.</p>
-        <div class="project-stack">
-          <span class="stack-tag">JavaScript</span>
-          <span class="stack-tag">ReactJS</span>
-          <span class="stack-tag">Firebase</span>
-          <span class="stack-tag">REST API</span>
         </div>
       </div>
-      <div class="project-card reveal reveal-delay-2">
-        <div class="project-top">
-          <div class="project-icon purple">👁️</div>
-          <div class="project-links">
-            <a href="https://github.com/SUNKARAAJAY-123" target="_blank" class="project-link" title="GitHub">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+
+      <!-- Project 2 -->
+      <div class="project-card-container reveal reveal-delay-2">
+        <div class="project-card-inner">
+          <!-- FRONT -->
+          <div class="project-card-front">
+            <div>
+              <div class="project-icon purple">👁️</div>
+              <h3 class="project-name">Face Attendance Recognizer</h3>
+              <div class="project-metric">100+ Records/Session · 35% Accuracy Boost</div>
+            </div>
+            <div class="flip-hint">
+              <span>Hover to flip for details</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+            </div>
+          </div>
+          <!-- BACK -->
+          <div class="project-card-back">
+            <div>
+              <h4 style="font-family: var(--font-display); font-size: 1.1rem; color: var(--accent); margin-bottom: 0.8rem;">Project Details</h4>
+              <p class="project-desc">Automated facial recognition attendance pipeline eliminating manual entry. Built image preprocessing and feature extraction workflows using Python and ML. Generates automated CSV reports, saving 2+ hours of administrative work weekly.</p>
+              <div class="project-stack" style="margin-top: 1.2rem;">
+                <span class="stack-tag">Python</span>
+                <span class="stack-tag">Machine Learning</span>
+                <span class="stack-tag">OpenCV</span>
+                <span class="stack-tag">CSV Automation</span>
+              </div>
+            </div>
+            <a href="https://github.com/SUNKARAAJAY-123" target="_blank" class="btn-primary">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+              View on GitHub
             </a>
           </div>
-        </div>
-        <div class="project-name">Face Attendance Recognizer</div>
-        <div class="project-metric">100+ Records/Session · 35% Accuracy Boost</div>
-        <p class="project-desc">Automated facial recognition attendance pipeline eliminating manual entry. Built image preprocessing and feature extraction workflows using Python and ML. Generates automated CSV reports, saving 2+ hours of administrative work weekly.</p>
-        <div class="project-stack">
-          <span class="stack-tag">Python</span>
-          <span class="stack-tag">Machine Learning</span>
-          <span class="stack-tag">OpenCV</span>
-          <span class="stack-tag">CSV Automation</span>
         </div>
       </div>
     </div>
@@ -831,7 +910,15 @@
         <div>
           <div class="achiev-title">Active Competitive Programmer</div>
           <p class="achiev-desc">Regularly practices DSA on GeeksforGeeks and LeetCode. Participates in online coding contests, continuously sharpening algorithmic problem-solving skills.</p>
-          <span class="achiev-badge">💡 DSA · Competitive Coding</span>
+          <div style="margin-top: 10px; display: flex; gap: 10px; flex-wrap: wrap;">
+            <a href="https://leetcode.com/u/sunkaraajay/" target="_blank" class="tag" style="text-decoration: none; color: #ffa116; border-color: rgba(255, 161, 22, 0.3); background: rgba(255, 161, 22, 0.05);">
+              LeetCode Profile ↗
+            </a>
+            <a href="https://www.geeksforgeeks.org/profile/sunkaraajay?tab=activity" target="_blank" class="tag" style="text-decoration: none; color: #2f8d46; border-color: rgba(47, 141, 70, 0.3); background: rgba(47, 141, 70, 0.05);">
+              GeeksforGeeks Profile ↗
+            </a>
+          </div>
+          <span class="achiev-badge" style="margin-top: 12px;">💡 DSA · Competitive Coding</span>
         </div>
       </div>
       <div class="achiev-item reveal reveal-delay-1">
@@ -870,13 +957,21 @@
           <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
           GitHub
         </a>
+        <a href="https://leetcode.com/u/sunkaraajay/" target="_blank" class="contact-btn">
+          <svg viewBox="0 0 24 24"><path d="M13.483 0a1.374 1.374 0 0 0-.961.414l-9.75 9.75a1.375 1.375 0 0 0 0 1.945l1.945 1.945a1.375 1.375 0 0 0 1.945 0l9.75-9.75a1.375 1.375 0 0 0 0-1.945L14.47.414A1.374 1.374 0 0 0 13.483 0zm5.632 7.747a1.374 1.374 0 0 0-.961.414l-5.856 5.856a1.375 1.375 0 1 0 1.945 1.945l5.856-5.856a1.375 1.375 0 0 0-.984-2.359z" fill="currentColor"/></svg>
+          LeetCode
+        </a>
+        <a href="https://www.geeksforgeeks.org/profile/sunkaraajay?tab=activity" target="_blank" class="contact-btn">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.8 14.7c-2.3 0-4.1-1.8-4.1-4.1s1.8-4.1 4.1-4.1c1.2 0 2.2.5 3 1.3l-1.9 1.9c-.3-.3-.7-.6-1.1-.6-.9 0-1.7.7-1.7 1.6s.7 1.7 1.7 1.7c.9 0 1.4-.4 1.7-.8v-.7h-1.7v-2.3h4v5.3c-1 .8-2.3 1.3-3.6 1.3zm6.3-5.3h-1.7V9.7h1.7V7h2.3v2.7h1.7v1.7h-1.7v2.6h-2.3V11.4z" fill="currentColor"/></svg>
+          GeeksforGeeks
+        </a>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>Built with precision · <span>Ajay Sunkara</span> · Andhra Pradesh, India · 2025</p>
+  <p>Recruiter-friendly · Built with precision · <span>Ajay Sunkara</span> · Andhra Pradesh, India · 2026</p>
 </footer>
 
 <script>
@@ -950,6 +1045,36 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.12 });
 reveals.forEach(el => observer.observe(el));
+
+// Interactive 3D tilt effect for non-flipping cards (About card, Skill cards, Cert cards)
+const tiltElements = document.querySelectorAll('.about-card, .skill-card, .cert-card');
+tiltElements.forEach(el => {
+  el.addEventListener('mousemove', e => {
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const xc = rect.width / 2;
+    const yc = rect.height / 2;
+    const dx = x - xc;
+    const dy = y - yc;
+    // Max rotation limits
+    const rx = -(dy / yc) * 12;
+    const ry = (dx / xc) * 12;
+    el.style.transform = `translateY(-8px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+    el.style.boxShadow = `${-ry}px ${rx}px 30px rgba(124,109,255,0.2)`;
+  });
+  
+  el.addEventListener('mouseleave', () => {
+    el.style.transform = 'translateY(0) rotateX(0) rotateY(0)';
+    el.style.boxShadow = '';
+    el.style.transition = 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s';
+  });
+  
+  el.addEventListener('mouseenter', () => {
+    el.style.transition = 'transform 0.1s ease, box-shadow 0.1s ease';
+  });
+});
 </script>
 </body>
 </html>
+```
