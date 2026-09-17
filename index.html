@@ -4,7 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ajay Sunkara — Software Development Engineer | AI &amp; Full Stack</title>
-<meta name="description" content="Ajay Sunkara is an AI &amp; Data Science engineer building software systems across AI, backend, full-stack development, and cloud technologies.">
+<meta name="description" content="Ajay Sunkara is a B.Tech AI &amp; Data Science engineer building practical AI systems, backend services, full-stack applications, and workflow automation solutions.">
+  <meta name="robots" content="index,follow">
+  <meta property="og:site_name" content="Ajay Sunkara — Software Development Engineer">
+  <meta name="twitter:image" content="https://sunkaraajay-123.github.io/Protifolio/og-image.png">
+  <meta property="og:image" content="https://sunkaraajay-123.github.io/Protifolio/og-image.png">
 <meta name="theme-color" content="#08090C">
 <link rel="canonical" href="https://sunkaraajay-123.github.io/Protifolio/">
 
@@ -25,9 +29,9 @@
   "url": "https://sunkaraajay-123.github.io/Protifolio/",
   "sameAs": [
     "https://github.com/SUNKARAAJAY-123",
-    "https://linkedin.com/in/ajay-sunkara",
+    "https://www.linkedin.com/in/ajay-sunkara123/",
     "https://leetcode.com/u/sunkaraajay/",
-    "https://www.geeksforgeeks.org/profile/sunkaraajay?tab=activity"
+    "https://www.geeksforgeeks.org/profile/sunkaraajay/"
   ]
 }
 </script>
@@ -512,9 +516,187 @@ footer{border-top:1px solid var(--border);padding:2.4rem 4vw;display:flex;flex-w
 .foot-links a{font-family:var(--font-m);font-size:.75rem;color:var(--muted);text-decoration:none;transition:.2s}
 .foot-links a:hover{color:var(--mint)}
 .foot-loc{font-family:var(--font-m);font-size:.72rem;color:var(--faint)}
+
+/* ============================================================
+   2026 UPGRADE — interaction, 3D depth, filters, signals
+   ============================================================ */
+:root{
+  --glass:rgba(17,21,27,.68);
+  --shadow-soft:0 24px 80px rgba(0,0,0,.28);
+}
+body.modal-open{overflow:hidden}
+button,a,.proj-panel,.stack-item,.metric,.proof-card{ -webkit-tap-highlight-color:transparent }
+
+.scroll-progress{
+  position:fixed;left:0;top:0;height:2px;width:0;z-index:1000;
+  background:linear-gradient(90deg,var(--accent),var(--mint));
+  box-shadow:0 0 14px rgba(94,234,212,.35);
+  transform-origin:left center;pointer-events:none;
+}
+
+.hero-visual{
+  perspective:1100px;
+  isolation:isolate;
+}
+.hero-visual::before{
+  content:"";position:absolute;inset:8% 8%;border-radius:50%;
+  background:radial-gradient(circle,rgba(76,111,255,.10),transparent 62%);
+  filter:blur(18px);pointer-events:none;
+}
+#system-map{position:relative;z-index:1;transform-style:preserve-3d}
+
+.hero-orb-label{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  z-index:2;text-align:center;pointer-events:none;
+  font-family:var(--font-m);font-size:.65rem;letter-spacing:.16em;
+  color:var(--muted);text-transform:uppercase;
+}
+.hero-orb-label strong{
+  display:block;font-family:var(--font-d);font-size:1.15rem;letter-spacing:-.02em;
+  color:var(--text);margin-top:.25rem;
+}
+
+.tilt-card{
+  transform-style:preserve-3d;
+  will-change:transform;
+}
+.proj-panel,.stack-cat,.metric,.proof-card{
+  box-shadow:0 0 0 rgba(76,111,255,0);
+}
+.proj-panel:hover,.stack-cat:hover,.metric:hover,.proof-card:hover{
+  box-shadow:var(--shadow-soft);
+}
+
+.project-toolbar{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  gap:1rem;margin-top:2.3rem;
+}
+.project-filters{display:flex;flex-wrap:wrap;gap:.45rem}
+.filter-btn{
+  border:1px solid var(--border);background:rgba(17,21,27,.55);color:var(--muted);
+  border-radius:999px;padding:.48rem .78rem;font-family:var(--font-m);font-size:.68rem;
+  letter-spacing:.05em;cursor:pointer;transition:transform .2s var(--ease),color .2s,border-color .2s,background .2s;
+}
+.filter-btn:hover{color:var(--text);border-color:var(--border-2);transform:translateY(-1px)}
+.filter-btn.active{color:var(--mint);border-color:rgba(94,234,212,.45);background:var(--mint-soft)}
+.filter-status{font-family:var(--font-m);font-size:.66rem;color:var(--faint)}
+
+.proj-panel.is-hidden{
+  display:none;
+}
+.proj-panel.filter-enter{
+  animation:project-in .45s var(--ease) both;
+}
+@keyframes project-in{
+  from{opacity:0;transform:translateY(16px) scale(.99)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+.workflow-viz{
+  width:100%;display:flex;flex-direction:column;gap:.42rem;
+}
+.workflow-step{
+  position:relative;display:grid;grid-template-columns:18px 1fr;align-items:center;gap:.65rem;
+  padding:.55rem .7rem;border:1px solid var(--border);border-radius:8px;
+  background:rgba(13,16,21,.72);font-family:var(--font-m);font-size:.68rem;
+  color:var(--muted);transition:border-color .35s,box-shadow .35s,color .35s,transform .35s;
+}
+.workflow-step::after{
+  content:"";position:absolute;left:7px;top:100%;height:.42rem;width:1px;
+  background:linear-gradient(var(--mint),transparent);opacity:.3;
+}
+.workflow-step:last-child::after{display:none}
+.workflow-step .node{
+  width:7px;height:7px;border-radius:50%;background:var(--faint);
+  box-shadow:0 0 0 transparent;transition:.35s;
+}
+.workflow-step.lit{color:var(--text);border-color:rgba(94,234,212,.42);box-shadow:0 0 22px rgba(94,234,212,.11)}
+.workflow-step.lit .node{background:var(--mint);box-shadow:0 0 12px rgba(94,234,212,.8)}
+.workflow-packet{
+  position:absolute;left:3px;top:3px;width:5px;height:5px;border-radius:50%;
+  background:var(--text);box-shadow:0 0 12px var(--mint);opacity:0;
+}
+.workflow-viz.running .workflow-packet{animation:packet-run 2.8s linear infinite}
+@keyframes packet-run{
+  0%{opacity:0;transform:translateY(0)}
+  5%{opacity:1}
+  88%{opacity:1;transform:translateY(238px)}
+  100%{opacity:0;transform:translateY(255px)}
+}
+
+.signals{
+  background:var(--bg-0);
+}
+.signal-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:3rem;
+  border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--border);
+}
+.signal-card{
+  background:var(--bg-2);padding:1.55rem;min-height:145px;position:relative;overflow:hidden;
+}
+.signal-card::after{
+  content:"";position:absolute;width:100px;height:100px;right:-50px;top:-50px;border-radius:50%;
+  background:radial-gradient(circle,rgba(76,111,255,.18),transparent 68%);
+}
+.signal-value{font-family:var(--font-d);font-weight:700;font-size:2rem;letter-spacing:-.03em}
+.signal-value .accent{color:var(--mint)}
+.signal-label{font-family:var(--font-m);font-size:.67rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-top:.35rem}
+.signal-note{font-size:.75rem;color:var(--faint);margin-top:.5rem}
+
+.building-grid{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:.7rem;margin-top:2.4rem;
+}
+.build-card{
+  border:1px solid var(--border);border-radius:12px;background:var(--bg-2);padding:1rem;
+  min-height:112px;transition:transform .3s var(--ease),border-color .3s,box-shadow .3s;
+}
+.build-card:hover{transform:translateY(-4px);border-color:var(--border-2);box-shadow:var(--shadow-soft)}
+.status{
+  display:inline-flex;align-items:center;gap:.4rem;font-family:var(--font-m);font-size:.6rem;
+  color:var(--mint);letter-spacing:.07em;text-transform:uppercase;
+}
+.status::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;box-shadow:0 0 10px currentColor}
+.status.learning{color:var(--accent-2)}
+.status.practicing{color:#b6a7ff}
+.build-card h4{font-family:var(--font-d);font-size:.94rem;font-weight:600;margin-top:.75rem}
+.build-card p{font-size:.74rem;color:var(--muted);margin-top:.35rem;line-height:1.5}
+
+.modal-workflow{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem;margin-top:.7rem;
+}
+.modal-step{
+  border:1px solid var(--border);background:var(--bg-1);border-radius:9px;padding:.7rem;
+  font-family:var(--font-m);font-size:.7rem;color:var(--muted);
+}
+.modal-step strong{display:block;color:var(--text);font-family:var(--font-b);font-weight:500;margin-bottom:.2rem}
+
+@media (max-width:900px){
+  .signal-grid{grid-template-columns:1fr 1fr}
+  .building-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:600px){
+  .project-toolbar{align-items:flex-start;flex-direction:column}
+  .signal-grid{grid-template-columns:1fr}
+  .building-grid{grid-template-columns:1fr}
+  .workflow-viz{max-width:100%}
+  .modal-workflow{grid-template-columns:1fr}
+  .hero-orb-label{font-size:.58rem}
+}
+@media (prefers-reduced-motion: reduce){
+  .workflow-viz.running .workflow-packet{animation:none}
+  .tilt-card{transform:none !important}
+}
+
 </style>
 </head>
 <body>
+<noscript><div style="padding:1rem;background:#11151B;color:#F5F7FA;text-align:center;font-family:Inter,sans-serif">JavaScript is required for the interactive portfolio features.</div></noscript>
+
+<script>
+  // Single source of truth for the resume. Replace only this value when the PDF is available.
+  const RESUME_URL = "YOUR_RESUME_URL";
+</script>
+
 
 <!-- PRELOADER -->
 <div id="preloader" role="status" aria-label="Loading">
@@ -529,6 +711,7 @@ footer{border-top:1px solid var(--border);padding:2.4rem 4vw;display:flex;flex-w
 <div class="cursor-ring" id="cursorRing" aria-hidden="true"><span class="cursor-label" id="cursorLabel"></span></div>
 
 <!-- NAV -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 <header class="nav" id="siteNav">
   <a href="#hero" class="logo">AJAY<span class="dot">.</span>S</a>
   <ul class="nav-center" id="navCenter">
@@ -539,7 +722,7 @@ footer{border-top:1px solid var(--border);padding:2.4rem 4vw;display:flex;flex-w
     <li><a href="#contact" data-sec="contact">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <a class="resume-pill" href="#" target="_blank" rel="noopener" data-cursor="OPEN ↗">Resume ↗</a>
+    <a class="resume-pill" href="__RESUME_URL__" target="_blank" rel="noopener noreferrer" data-cursor="OPEN ↗">Resume ↗</a>
     <button class="burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
     </button>
@@ -555,17 +738,19 @@ footer{border-top:1px solid var(--border);padding:2.4rem 4vw;display:flex;flex-w
     <li><a href="#proof">Proof</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a class="resume-pill" href="#" target="_blank" rel="noopener">Resume ↗</a>
+  <a class="resume-pill" href="__RESUME_URL__" target="_blank" rel="noopener noreferrer">Resume ↗</a>
 </nav>
 
 <!-- CHAPTER PROGRESS -->
 <nav class="chapter-nav" id="chapterNav" aria-label="Section progress">
   <a href="#hero" data-sec="hero"><span class="num">01</span></a>
   <a href="#about" data-sec="about"><span class="num">02</span></a>
-  <a href="#experience" data-sec="experience"><span class="num">03</span></a>
-  <a href="#work" data-sec="work"><span class="num">04</span></a>
-  <a href="#proof" data-sec="proof"><span class="num">05</span></a>
-  <a href="#contact" data-sec="contact"><span class="num">06</span></a>
+  <a href="#signals" data-sec="signals"><span class="num">03</span></a>
+  <a href="#experience" data-sec="experience"><span class="num">04</span></a>
+  <a href="#work" data-sec="work"><span class="num">05</span></a>
+  <a href="#proof" data-sec="proof"><span class="num">06</span></a>
+  <a href="#certs" data-sec="certs"><span class="num">07</span></a>
+  <a href="#contact" data-sec="contact"><span class="num">08</span></a>
 </nav>
 
 <main>
@@ -582,12 +767,12 @@ footer{border-top:1px solid var(--border);padding:2.4rem 4vw;display:flex;flex-w
       <p class="hero-copy">Building <strong>intelligent systems</strong>, scalable backends, and thoughtful digital products — an AI &amp; Data Science engineer who ships practical software, not just prototypes.</p>
       <div class="hero-ctas">
         <a href="#work" class="btn btn-fill" data-cursor="VIEW ↘">View My Work ↘</a>
-        <a href="#" target="_blank" rel="noopener" class="btn btn-ghost" data-cursor="OPEN ↗">Download Resume ↗</a>
+        <a href="__RESUME_URL__" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" data-cursor="OPEN ↗">Download Resume ↗</a>
       </div>
       <div class="hero-links">
-        <a href="https://github.com/SUNKARAAJAY-123" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://www.linkedin.com/in/ajay-sunkara123/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://leetcode.com/u/sunkaraajay/" target="_blank" rel="noopener">LeetCode</a>
+        <a href="https://github.com/SUNKARAAJAY-123" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/ajay-sunkara123/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://leetcode.com/u/sunkaraajay/" target="_blank" rel="noopener noreferrer">LeetCode</a>
         
       </div>
       <div class="meta-strip">
@@ -598,7 +783,8 @@ footer{border-top:1px solid var(--border);padding:2.4rem 4vw;display:flex;flex-w
       </div>
     </div>
     <div class="hero-visual">
-      <canvas id="system-map"></canvas>
+      <canvas id="system-map" aria-label="Interactive engineering system visualization"></canvas>
+      <div class="hero-orb-label">SYSTEM GRAPH<strong>AI · API · DATA</strong></div>
     </div>
   </div>
   <div class="scroll-cue"><div class="line"></div>Scroll to explore</div>
@@ -629,6 +815,66 @@ footer{border-top:1px solid var(--border);padding:2.4rem 4vw;display:flex;flex-w
         <p>My focus is practical: predictive models that actually ship, APIs that hold up under real usage, and interfaces that make technical systems usable for non-technical people — like farmers relying on an irrigation model to schedule water.</p>
         <p>I spend a lot of time in <strong>data structures &amp; algorithms</strong>, and I'm drawn to the parts of engineering where AI, backend architecture, and cloud infrastructure meet.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="signals" class="signals">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Engineering Signals</p>
+      <h2 class="title">Evidence over adjectives.</h2>
+      <p class="sub">A compact view of the engineering signals already represented in this portfolio.</p>
+    </div>
+    <div class="signal-grid">
+      <div class="signal-card reveal reveal-d1">
+        <div class="signal-value">AI <span class="accent">&amp;</span> Full Stack</div>
+        <div class="signal-label">Engineering Focus</div>
+        <div class="signal-note">Practical systems across AI, backend, and product interfaces.</div>
+      </div>
+      <div class="signal-card reveal reveal-d2">
+        <div class="signal-value"><span data-signal-count="3">0</span>+</div>
+        <div class="signal-label">Major Projects</div>
+        <div class="signal-note">AI, full-stack, and workflow automation projects.</div>
+      </div>
+      <div class="signal-card reveal reveal-d3">
+        <div class="signal-value">ServiceNow</div>
+        <div class="signal-label">Certified Developer</div>
+        <div class="signal-note">Certified Application Developer credential.</div>
+      </div>
+      <div class="signal-card reveal reveal-d1">
+        <div class="signal-value"><span data-signal-count="96">0</span><span class="accent">%</span></div>
+        <div class="signal-label">Model Accuracy</div>
+        <div class="signal-note">Reported Random Forest result in the irrigation project.</div>
+      </div>
+      <div class="signal-card reveal reveal-d2">
+        <div class="signal-value"><span data-signal-count="5000">0</span></div>
+        <div class="signal-label">Training Records</div>
+        <div class="signal-note">Dataset used for the irrigation model.</div>
+      </div>
+      <div class="signal-card reveal reveal-d3">
+        <div class="signal-value"><span data-signal-count="23">0</span></div>
+        <div class="signal-label">ML Features</div>
+        <div class="signal-note">Features used by the reported model.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="building">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Current Focus</p>
+      <h2 class="title">Currently building.</h2>
+      <p class="sub">Fresher-focused growth areas aligned with the projects and skills shown here.</p>
+    </div>
+    <div class="building-grid">
+      <div class="build-card reveal reveal-d1"><span class="status">Active</span><h4>AI Engineering</h4><p>Applied ML and practical AI systems.</p></div>
+      <div class="build-card reveal reveal-d2"><span class="status">Active</span><h4>Backend Systems</h4><p>APIs, databases, validation, and system design.</p></div>
+      <div class="build-card reveal reveal-d3"><span class="status learning">Learning</span><h4>Cloud Technologies</h4><p>Building stronger deployment and infrastructure fundamentals.</p></div>
+      <div class="build-card reveal reveal-d4"><span class="status">Active</span><h4>ServiceNow Automation</h4><p>ITSM workflows, catalog, approvals, and lifecycle automation.</p></div>
+      <div class="build-card reveal reveal-d1"><span class="status practicing">Practicing</span><h4>DSA &amp; Problem Solving</h4><p>Regular algorithmic problem solving and CS fundamentals.</p></div>
     </div>
   </div>
 </section>
@@ -670,67 +916,176 @@ footer{border-top:1px solid var(--border);padding:2.4rem 4vw;display:flex;flex-w
 <!-- ============================================================
      04 · PROJECTS — WHAT HE BUILDS
      ============================================================ -->
+
 <section id="work">
   <div class="wrap">
     <div class="reveal">
       <p class="eyebrow">04 · Projects</p>
       <h2 class="title">What I build.</h2>
-      <p class="sub">Two systems, shipped end to end — click a panel for the full case study.</p>
+      <p class="sub">Engineering projects spanning AI, full-stack systems, backend APIs, and workflow automation.</p>
     </div>
 
-    <!-- PROJECT 01 -->
-    <article class="proj-panel reveal reveal-d1" id="projKisan" tabindex="0" role="button" aria-haspopup="dialog" data-cursor="VIEW PROJECT →">
-      <div>
-        <div class="proj-index">Project 01 / 02</div>
-        <h3 class="proj-name">Kisan Dost</h3>
-        <p class="proj-tag">Smart Agriculture Platform</p>
-        <p class="proj-desc">A <strong>full-stack agricultural advisory platform</strong> delivering crop recommendations and real-time services to farmers. Built with concurrent multi-user workflows on top of Firebase authentication and a real-time database.</p>
-        <div class="stack-row">
-          <span class="stack-chip">React</span><span class="stack-chip">TypeScript</span>
-          <span class="stack-chip">Vite</span><span class="stack-chip">REST APIs</span>
-          <span class="stack-chip">Firebase</span><span class="stack-chip">Tailwind CSS</span>
-        </div>
-        <span class="proj-open">Open case study →</span>
+    <div class="project-toolbar reveal reveal-d1">
+      <div class="project-filters" role="group" aria-label="Filter projects">
+        <button class="filter-btn active" type="button" data-filter="ALL">ALL</button>
+        <button class="filter-btn" type="button" data-filter="AI / ML">AI / ML</button>
+        <button class="filter-btn" type="button" data-filter="FULL STACK">FULL STACK</button>
+        <button class="filter-btn" type="button" data-filter="BACKEND">BACKEND</button>
+        <button class="filter-btn" type="button" data-filter="SERVICENOW">SERVICENOW</button>
       </div>
-      <div class="proj-visual">
-        <div style="text-align:center">
-          <div style="font-family:var(--font-m);font-size:.7rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem">Sync Resolution</div>
-          <div style="font-family:var(--font-d);font-size:2.6rem;font-weight:700;color:var(--mint)">10+</div>
-          <div style="font-family:var(--font-m);font-size:.72rem;color:var(--muted);margin-top:.3rem">API / data-sync defects resolved</div>
-        </div>
-      </div>
-    </article>
+      <span class="filter-status" id="filterStatus" aria-live="polite">3 projects</span>
+    </div>
 
-    <!-- PROJECT 02 -->
-    <article class="proj-panel reveal reveal-d2" id="projIrrigation" tabindex="0" role="button" aria-haspopup="dialog" data-cursor="VIEW PROJECT →">
-      <div>
-        <div class="proj-index">Project 02 / 02</div>
-        <h3 class="proj-name">AI-Based Irrigation Management System</h3>
-        <p class="proj-tag">Predictive Water Scheduling</p>
-        <p class="proj-desc">A <strong>Random Forest–driven prediction system</strong> that turns soil data, crop stage, and live weather into a farmer-facing irrigation recommendation — with regional-language voice support.</p>
-        <div class="stack-row">
-          <span class="stack-chip">Next.js 15</span><span class="stack-chip">FastAPI</span>
-          <span class="stack-chip">Python</span><span class="stack-chip">PostgreSQL</span>
-          <span class="stack-chip">Random Forest</span><span class="stack-chip">GridSearchCV</span>
-        </div>
-        <span class="proj-open">Open case study →</span>
-      </div>
-      <div class="proj-visual">
-        <div class="pipeline" id="pipelineViz">
-          <div class="pipe-node">DATA</div>
-          <div class="pipe-arrow">↓</div>
-          <div class="pipe-node">FEATURES (23)</div>
-          <div class="pipe-arrow">↓</div>
-          <div class="pipe-node">RANDOM FOREST</div>
-          <div class="pipe-arrow">↓</div>
-          <div class="pipe-node">PREDICTION</div>
-          <div class="pipe-arrow">↓</div>
-          <div class="pipe-node">IRRIGATION RECOMMENDATION</div>
-        </div>
-      </div>
-    </article>
+    <div id="projectGrid"></div>
   </div>
 </section>
+
+
+<script>
+const PROJECTS = [
+  {
+    id:"kisan",
+    number:"01",
+    title:"Kisan Dost",
+    category:"FULL STACK",
+    tag:"Smart Agriculture Platform",
+    description:'A <strong>full-stack agricultural advisory platform</strong> delivering crop recommendations and real-time services to farmers. Built with concurrent multi-user workflows on Firebase authentication and a real-time database.',
+    stack:["React","TypeScript","Vite","REST APIs","Firebase","Tailwind CSS"],
+    visual:`<div style="text-align:center"><div style="font-family:var(--font-m);font-size:.7rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem">Sync Resolution</div><div style="font-family:var(--font-d);font-size:2.6rem;font-weight:700;color:var(--mint)">10+</div><div style="font-family:var(--font-m);font-size:.72rem;color:var(--muted);margin-top:.3rem">API / data-sync defects resolved</div></div>`,
+    modal:{
+      title:"Kisan Dost — Smart Agriculture Platform",
+      overview:"A full-stack agricultural advisory platform built to give farmers fast, reliable access to crop recommendations and real-time services in one place.",
+      problem:"Farmers needed a single, reliable interface for crop guidance instead of scattered, static information sources — and the system had to hold up with multiple people using it concurrently.",
+      architecture:"React + TypeScript on Vite for a fast, typed frontend, talking to REST APIs backed by Firebase Authentication and a real-time database for live, multi-user state.",
+      implementation:"Built concurrent multi-user workflows on top of Firebase's real-time database, and resolved 10+ API and data-synchronization defects to keep state consistent across sessions.",
+      outcome:"A deployed, live web platform delivering crop recommendations and real-time services with stable multi-user synchronization."
+    },
+    github:"https://github.com/SUNKARAAJAY-123"
+  },
+  {
+    id:"irrigation",
+    number:"02",
+    title:"AI-Based Irrigation Management System",
+    category:"AI / ML",
+    tag:"Predictive Water Scheduling",
+    description:'A <strong>Random Forest–driven prediction system</strong> that turns soil data, crop stage, and live weather into a farmer-facing irrigation recommendation — with regional-language voice support.',
+    stack:["Next.js 15","FastAPI","Python","PostgreSQL","Random Forest","GridSearchCV"],
+    visual:`<div class="pipeline" aria-label="Irrigation data pipeline"><div class="pipe-node">DATA</div><div class="pipe-arrow">↓</div><div class="pipe-node">FEATURES (23)</div><div class="pipe-arrow">↓</div><div class="pipe-node">RANDOM FOREST</div><div class="pipe-arrow">↓</div><div class="pipe-node">PREDICTION</div><div class="pipe-arrow">↓</div><div class="pipe-node">IRRIGATION RECOMMENDATION</div></div>`,
+    modal:{
+      title:"AI-Based Irrigation Management System",
+      overview:"A predictive irrigation platform that turns soil, crop, and weather data into a concrete watering recommendation — built end to end during the Infosys Springboard AI internship.",
+      problem:"Irrigation decisions are usually made on instinct rather than data, leading to over- or under-watering. The goal was a model-driven recommendation a farmer could actually act on, in their own language.",
+      architecture:"Next.js 15 frontend, FastAPI backend, PostgreSQL with SQLAlchemy + Alembic migrations, and a Random Forest model tuned with GridSearchCV serving predictions through the API layer.",
+      implementation:"Trained the model on a 5,000-record dataset across 23 features, reaching 96% accuracy, R² ≈ 0.95, and MAE < 1.1mm. Layered in Sarvam AI for regional-language voice support and OpenWeather for live forecast data, plus role-based access control.",
+      outcome:"A working predictive water-scheduling system that converts soil data, crop stage, and live weather into a farmer-facing irrigation recommendation."
+    },
+    github:"https://github.com/SUNKARAAJAY-123"
+  },
+  {
+    id:"servicenow",
+    number:"03",
+    title:"Automated Network Request Management in ServiceNow",
+    category:"SERVICENOW",
+    tag:"ServiceNow · ITSM · Workflow Automation",
+    description:"A ServiceNow PDI-based project designed to automate and simplify the complete lifecycle of network-related service requests, from request submission and validation to approval, fulfillment, tracking, notifications, and closure.",
+    stack:["ServiceNow","ITSM","Service Catalog","Workflow Automation","Request Management","Approval Workflow","Notifications","Request Tracking","PDI"],
+    visual:`<div class="workflow-viz" id="serviceWorkflow" aria-label="ServiceNow request lifecycle"><span class="workflow-packet" aria-hidden="true"></span>
+      <div class="workflow-step"><span class="node"></span><span>REQUEST</span></div>
+      <div class="workflow-step"><span class="node"></span><span>VALIDATION</span></div>
+      <div class="workflow-step"><span class="node"></span><span>APPROVAL</span></div>
+      <div class="workflow-step"><span class="node"></span><span>FULFILLMENT</span></div>
+      <div class="workflow-step"><span class="node"></span><span>TRACKING</span></div>
+      <div class="workflow-step"><span class="node"></span><span>NOTIFICATION</span></div>
+      <div class="workflow-step"><span class="node"></span><span>CLOSED</span></div>
+    </div>`,
+    modal:{
+      title:"Automated Network Request Management in ServiceNow",
+      overview:"A ServiceNow-based workflow automation system for managing network-related service requests through a structured lifecycle.",
+      problem:"Network requests often require multiple manual steps including submission, validation, approval, fulfillment, tracking, and communication. The project focuses on organizing these steps into a structured ServiceNow workflow.",
+      solution:"Automated the network request lifecycle using ServiceNow platform capabilities including Service Catalog, request workflows, validation, approval processes, fulfillment tracking, notifications, and request state management.",
+      platform:"ServiceNow Personal Developer Instance (PDI)",
+      concepts:["IT Service Management","Service Catalog","Workflow Automation","Request Management","Approval Management","Notifications","Lifecycle Management"],
+      workflow:["User Request","Request Validation","Approval","Network Fulfillment","Status Tracking","Notification","Closure"]
+    },
+    github:"https://github.com/SUNKARAAJAY-123/Automated-Network-Request-Management-in-ServiceNow"
+  }
+];
+
+const projectGrid = document.getElementById("projectGrid");
+const filterStatus = document.getElementById("filterStatus");
+
+function projectCard(p){
+  return `<article class="proj-panel tilt-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open ${p.title} case study" data-project="${p.id}" data-category="${p.category}">
+    <div>
+      <div class="proj-index">Project ${p.number} / ${PROJECTS.length}</div>
+      <h3 class="proj-name">${p.title}</h3>
+      <p class="proj-tag">${p.tag}</p>
+      <p class="proj-desc">${p.description}</p>
+      <div class="stack-row">${p.stack.map(s=>`<span class="stack-chip">${s}</span>`).join("")}</div>
+      <span class="proj-open">Open case study →</span>
+    </div>
+    <div class="proj-visual">${p.visual}</div>
+  </article>`;
+}
+
+function renderProjects(filter="ALL"){
+  const visible = PROJECTS.filter(p=>filter==="ALL" || p.category===filter || (filter==="BACKEND" && p.stack.some(s=>/API|FastAPI|Node|REST|PostgreSQL|Firebase/i.test(s))));
+  projectGrid.innerHTML = visible.map(projectCard).join("");
+  filterStatus.textContent = `${visible.length} project${visible.length===1?"":"s"}`;
+  visible.forEach((p,i)=>{
+    const el=document.querySelector(`[data-project="${p.id}"]`);
+    el.classList.add("filter-enter");
+    el.style.animationDelay=`${Math.min(i*70,210)}ms`;
+  });
+  bindProjectCards();
+  bindTiltCards();
+  startServiceWorkflow();
+}
+
+function bindProjectCards(){
+  document.querySelectorAll("[data-project]").forEach(el=>{
+    el.addEventListener("click",()=>openProjectModal(el.dataset.project));
+    el.addEventListener("keydown",e=>{
+      if(e.key==="Enter" || e.key===" "){e.preventDefault();openProjectModal(el.dataset.project);}
+    });
+  });
+}
+
+function bindTiltCards(){
+  if(reduceMotion || !window.matchMedia("(hover:hover) and (pointer:fine)").matches) return;
+  document.querySelectorAll(".tilt-card").forEach(card=>{
+    card.addEventListener("pointermove",e=>{
+      const r=card.getBoundingClientRect(), x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+      card.style.transform=`perspective(900px) rotateX(${(-y*6).toFixed(2)}deg) rotateY(${(x*7).toFixed(2)}deg) translateZ(2px)`;
+    });
+    card.addEventListener("pointerleave",()=>card.style.transform="");
+  });
+}
+
+document.querySelectorAll(".filter-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".filter-btn").forEach(b=>b.classList.toggle("active",b===btn));
+    renderProjects(btn.dataset.filter);
+  });
+});
+
+renderProjects();
+
+function startServiceWorkflow(){
+  const viz=document.getElementById("serviceWorkflow");
+  if(!viz || reduceMotion) return;
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting) return;
+      viz.classList.add("running");
+      const steps=viz.querySelectorAll(".workflow-step");
+      steps.forEach((s,i)=>setTimeout(()=>s.classList.add("lit"),i*380));
+      observer.unobserve(viz);
+    });
+  },{threshold:.35});
+  observer.observe(viz);
+}
+</script>
 
 <!-- PROJECT MODAL -->
 <div class="proj-modal-backdrop" id="modalBackdrop">
@@ -817,7 +1172,7 @@ footer{border-top:1px solid var(--border);padding:2.4rem 4vw;display:flex;flex-w
       <div class="proof-card reveal reveal-d2">
         <h5 style="display:flex;align-items:center;gap:.5rem;">
           <svg width="20" height="20" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0;"><path d="M100 0C44.8 0 0 44.8 0 100s44.8 100 100 100 100-44.8 100-100S155.2 0 100 0z" fill="#2F8D46"/><path d="M156 93c-3.6-15-17-26-33-26-9.4 0-17.8 3.8-23.9 9.9C93 71.8 84.6 68 75.2 68c-16 0-29.4 11-33 26H30v14h12.2c3.6 15 17 26 33 26 9.4 0 17.8-3.8 23.9-9.9 6.1 6.1 14.5 9.9 23.9 9.9 16 0 29.4-11 33-26H170V93h-14zm-80.8 26c-8.3 0-15-6.7-15-15s6.7-15 15-15 15 6.7 15 15-6.7 15-15 15zm49.6 0c-8.3 0-15-6.7-15-15s6.7-15 15-15 15 6.7 15 15-6.7 15-15 15z" fill="#fff"/></svg>
-          <a href="https://www.geeksforgeeks.org/profile/sunkaraajay?tab=activity" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">GeeksforGeeks Campus Mantri</a>
+          <a href="https://www.geeksforgeeks.org/profile/sunkaraajay/" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">GeeksforGeeks Campus Mantri</a>
         </h5>
         <p>Appointed campus ambassador (2026) — representing the student developer community and driving coding culture on campus.</p>
       </div>
@@ -829,8 +1184,7 @@ footer{border-top:1px solid var(--border);padding:2.4rem 4vw;display:flex;flex-w
 
     <div class="terminal reveal reveal-d3">
       <div class="terminal-bar"><span></span><span></span><span></span></div>
-      <div class="terminal-body">
-```html
+      <div class="terminal-body">html
 <span class="muted-t">$</span>
 <span class="prompt">whoami --profiles</span><br>
 
@@ -866,7 +1220,6 @@ Credly Account&nbsp;&nbsp;
 </a>
 &nbsp;&nbsp;
 <span class="muted-t">[ACTIVE]</span>
-```
  </div>
     </div>
   </div>
@@ -904,9 +1257,9 @@ Credly Account&nbsp;&nbsp;
     <p class="contact-sub">Open to software engineering, backend, AI, and full-stack opportunities.</p>
     <div class="contact-btns">
       <a class="btn btn-fill" href="mailto:sunkaraajay66@gmail.com" data-cursor="OPEN ↗">Email Me ↗</a>
-      <a class="btn btn-ghost" href="https://linkedin.com/in/ajay-sunkara" target="_blank" rel="noopener" data-cursor="OPEN ↗">LinkedIn ↗</a>
-      <a class="btn btn-ghost" href="https://github.com/SUNKARAAJAY-123" target="_blank" rel="noopener" data-cursor="OPEN ↗">GitHub ↗</a>
-      <a class="btn btn-ghost" href="#" target="_blank" rel="noopener" data-cursor="OPEN ↗">Resume ↗</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/ajay-sunkara123/" target="_blank" rel="noopener noreferrer" data-cursor="OPEN ↗">LinkedIn ↗</a>
+      <a class="btn btn-ghost" href="https://github.com/SUNKARAAJAY-123" target="_blank" rel="noopener noreferrer" data-cursor="OPEN ↗">GitHub ↗</a>
+      <a class="btn btn-ghost" href="__RESUME_URL__" target="_blank" rel="noopener noreferrer" data-cursor="OPEN ↗">Resume ↗</a>
     </div>
   </div>
 </section>
@@ -916,10 +1269,11 @@ Credly Account&nbsp;&nbsp;
 <footer>
   <div class="foot-brand">AJAY SUNKARA<span class="role">Software Development Engineer — AI · Backend · Full Stack</span></div>
   <ul class="foot-links">
-    <li><a href="https://github.com/SUNKARAAJAY-123" target="_blank" rel="noopener">GitHub</a></li>
-    <li><a href="https://linkedin.com/in/ajay-sunkara" target="_blank" rel="noopener">LinkedIn</a></li>
-    <li><a href="https://leetcode.com/u/sunkaraajay/" target="_blank" rel="noopener">LeetCode</a></li>
-    <li><a href="https://www.geeksforgeeks.org/profile/sunkaraajay?tab=activity" target="_blank" rel="noopener" >GeeksforGeeks</a></li> </ul>
+    <li><a href="https://github.com/SUNKARAAJAY-123" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+    <li><a href="https://www.linkedin.com/in/ajay-sunkara123/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+    <li><a href="https://leetcode.com/u/sunkaraajay/" target="_blank" rel="noopener noreferrer">LeetCode</a></li>
+    <li><a href="https://www.geeksforgeeks.org/profile/sunkaraajay/" target="_blank" rel="noopener noreferrer">GeeksforGeeks</a>
+    <li><a href="https://www.credly.com/users/sunkaraajay" target="_blank" rel="noopener noreferrer">Credly</a></li></li> </ul>
   <div class="foot-loc">Andhra Pradesh, India · © 2026</div>
 </footer>
 
@@ -927,6 +1281,17 @@ Credly Account&nbsp;&nbsp;
 (function(){
 "use strict";
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const RESUME_LINKS = document.querySelectorAll('a[href="__RESUME_URL__"]');
+RESUME_LINKS.forEach(a=>{
+  a.href=RESUME_URL;
+  if(RESUME_URL==="YOUR_RESUME_URL"){
+    a.addEventListener("click",e=>{
+      e.preventDefault();
+      alert("Resume link is not configured yet. Set RESUME_URL in the page source.");
+    });
+  }
+});
+
 
 /* ---------------- Preloader ---------------- */
 (function preload(){
@@ -972,7 +1337,7 @@ mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>{
 }));
 
 /* ---------------- Section observer for nav + chapter dots ---------------- */
-const sections = document.querySelectorAll('main section, #hero');
+const sections = document.querySelectorAll('main section');
 const secObserver = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
@@ -1028,6 +1393,36 @@ if(pipeline){
   pipeObserver.observe(pipeline);
 }
 
+
+/* ---------------- Scroll progress ---------------- */
+const scrollProgress=document.getElementById("scrollProgress");
+function updateScrollProgress(){
+  const max=document.documentElement.scrollHeight-window.innerHeight;
+  scrollProgress.style.width=`${max>0 ? (window.scrollY/max)*100 : 0}%`;
+}
+window.addEventListener("scroll",updateScrollProgress,{passive:true});
+window.addEventListener("resize",updateScrollProgress);
+updateScrollProgress();
+
+/* ---------------- Signal counters ---------------- */
+const signalCounters=document.querySelectorAll("[data-signal-count]");
+const signalObserver=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(!entry.isIntersecting) return;
+    const el=entry.target, target=Number(el.dataset.signalCount);
+    if(reduceMotion){el.textContent=target.toLocaleString();signalObserver.unobserve(el);return;}
+    const start=performance.now(), duration=950;
+    function tick(now){
+      const p=Math.min((now-start)/duration,1);
+      el.textContent=Math.floor(p*target).toLocaleString();
+      if(p<1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    signalObserver.unobserve(el);
+  });
+},{threshold:.6});
+signalCounters.forEach(el=>signalObserver.observe(el));
+
 /* ---------------- Custom cursor ---------------- */
 if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){
   const dot = document.getElementById('cursorDot');
@@ -1057,11 +1452,17 @@ if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){
 const canvas = document.getElementById('particle-field');
 const ctx = canvas.getContext('2d');
 let W,H,particles=[];
-function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+function resize(){
+  const dpr=Math.min(window.devicePixelRatio||1,2);
+  W=window.innerWidth; H=window.innerHeight;
+  canvas.width=Math.floor(W*dpr); canvas.height=Math.floor(H*dpr);
+  canvas.style.width=W+"px"; canvas.style.height=H+"px";
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+}
 resize(); window.addEventListener('resize', resize);
 function makeParticles(){
   particles = [];
-  const count = window.innerWidth < 700 ? 28 : 60;
+  const count = reduceMotion ? 0 : (window.innerWidth < 700 ? 18 : 44);
   for(let i=0;i<count;i++){
     particles.push({
       x:Math.random()*W, y:Math.random()*H,
@@ -1202,68 +1603,63 @@ function roundRect(c,x,y,w,h,r){
 }
 drawSystemMap();
 
-/* ---------------- Project modal ---------------- */
-const modalData = {
-  projKisan: {
-    title:'Kisan Dost — Smart Agriculture Platform',
-    overview:'A full-stack agricultural advisory platform built to give farmers fast, reliable access to crop recommendations and real-time services in one place.',
-    problem:'Farmers needed a single, reliable interface for crop guidance instead of scattered, static information sources — and the system had to hold up with multiple people using it concurrently.',
-    architecture:'React + TypeScript on Vite for a fast, typed frontend, talking to REST APIs backed by Firebase Authentication and a real-time database for live, multi-user state.',
-    implementation:'Built concurrent multi-user workflows on top of Firebase\'s real-time database, and resolved 10+ API and data-synchronization defects to keep state consistent across sessions.',
-    outcome:'A deployed, live web platform delivering crop recommendations and real-time services with stable multi-user synchronization.',
-    stack:['React','TypeScript','Vite','REST APIs','Firebase','Tailwind CSS'],
-    links:[{label:'GitHub ↗', url:'https://github.com/SUNKARAAJAY-123'}]
-  },
-  projIrrigation: {
-    title:'AI-Based Irrigation Management System',
-    overview:'A predictive irrigation platform that turns soil, crop, and weather data into a concrete watering recommendation — built end to end during the Infosys Springboard AI internship.',
-    problem:'Irrigation decisions are usually made on instinct rather than data, leading to over- or under-watering. The goal was a model-driven recommendation a farmer could actually act on, in their own language.',
-    architecture:'Next.js 15 frontend, FastAPI backend, PostgreSQL with SQLAlchemy + Alembic migrations, and a Random Forest model tuned with GridSearchCV serving predictions through the API layer.',
-    implementation:'Trained the model on a 5,000-record dataset across 23 features, reaching 96% accuracy, R² ≈ 0.95, and MAE < 1.1mm. Layered in Sarvam AI for regional-language voice support and OpenWeather for live forecast data, plus role-based access control.',
-    outcome:'A working predictive water-scheduling system that converts soil data, crop stage, and live weather into a farmer-facing irrigation recommendation.',
-    stack:['Next.js 15','FastAPI','Python','PostgreSQL','Random Forest','GridSearchCV','SQLAlchemy','Alembic'],
-    links:[{label:'GitHub ↗', url:'https://github.com/SUNKARAAJAY-123'}]
-  }
-};
 
+/* ---------------- Project modal ---------------- */
 const backdrop = document.getElementById('modalBackdrop');
 const modalContent = document.getElementById('modalContent');
 const modalClose = document.getElementById('modalClose');
 let lastFocused = null;
 
-function openModal(key){
-  const d = modalData[key];
-  if(!d) return;
+function openProjectModal(key){
+  const p=PROJECTS.find(x=>x.id===key);
+  if(!p) return;
+  const d=p.modal;
+  const workflow = d.workflow ? `<div class="modal-workflow">${d.workflow.map((s,i)=>`<div class="modal-step"><strong>${String(i+1).padStart(2,"0")} · ${s}</strong>${i<d.workflow.length-1?"Next lifecycle stage":"Lifecycle complete"}</div>`).join("")}</div>` : "";
+  const concepts = d.concepts ? `<div class="stack-row">${d.concepts.map(s=>`<span class="stack-chip">${s}</span>`).join("")}</div>` : "";
+  const solution = d.solution ? `<div class="modal-section"><h4>03 · Solution</h4><p>${d.solution}</p></div>` : "";
+  const architecture = d.architecture ? `<div class="modal-section"><h4>${d.solution ? "04" : "03"} · Architecture</h4><p>${d.architecture}</p></div>` : "";
+  const implementation = d.implementation ? `<div class="modal-section"><h4>${d.solution ? "05" : "04"} · Implementation</h4><p>${d.implementation}</p></div>` : "";
+  const outcome = d.outcome ? `<div class="modal-section"><h4>06 · Outcome</h4><p>${d.outcome}</p></div>` : "";
+  const platform = d.platform ? `<div class="modal-section"><h4>05 · Platform</h4><p>${d.platform}</p></div>` : "";
+  const conceptSection = d.concepts ? `<div class="modal-section"><h4>06 · Key Concepts</h4>${concepts}</div>` : "";
+  const workflowSection = d.workflow ? `<div class="modal-section"><h4>04 · Workflow</h4>${workflow}</div>` : "";
+
   modalContent.innerHTML = `
     <h3 id="modalTitle" style="font-family:var(--font-d);font-weight:700;font-size:1.7rem;margin-bottom:1.6rem;letter-spacing:-.02em;padding-right:2rem">${d.title}</h3>
     <div class="modal-section"><h4>01 · Overview</h4><p>${d.overview}</p></div>
     <div class="modal-section"><h4>02 · Problem</h4><p>${d.problem}</p></div>
-    <div class="modal-section"><h4>03 · Architecture</h4><p>${d.architecture}</p></div>
-    <div class="modal-section"><h4>04 · Implementation</h4><p>${d.implementation}</p></div>
-    <div class="modal-section"><h4>05 · Outcome</h4><p>${d.outcome}</p></div>
-    <div class="modal-section"><h4>06 · Tech Stack</h4><div class="stack-row">${d.stack.map(s=>`<span class="stack-chip">${s}</span>`).join('')}</div></div>
-    <div class="modal-links">${d.links.map(l=>`<a class="btn btn-ghost" href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join('')}</div>
-  `;
-  lastFocused = document.activeElement;
-  backdrop.classList.add('open');
-  document.body.style.overflow = 'hidden';
+    ${solution}${architecture}${implementation}${workflowSection}${platform}${conceptSection}${outcome}
+    <div class="modal-section"><h4>Tech Stack</h4><div class="stack-row">${p.stack.map(s=>`<span class="stack-chip">${s}</span>`).join("")}</div></div>
+    <div class="modal-links">
+      <a class="btn btn-ghost" href="${p.github}" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>
+    </div>`;
+  lastFocused=document.activeElement;
+  backdrop.classList.add("open");
+  document.body.classList.add("modal-open");
   modalClose.focus();
 }
+
 function closeModal(){
-  backdrop.classList.remove('open');
-  document.body.style.overflow = '';
+  backdrop.classList.remove("open");
+  document.body.classList.remove("modal-open");
   if(lastFocused) lastFocused.focus();
 }
-['projKisan','projIrrigation'].forEach(id=>{
-  const el = document.getElementById(id);
-  el.addEventListener('click', ()=>openModal(id));
-  el.addEventListener('keydown', e=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); openModal(id);} });
+modalClose.addEventListener("click",closeModal);
+backdrop.addEventListener("click",e=>{if(e.target===backdrop)closeModal();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape" && backdrop.classList.contains("open"))closeModal();});
+
+/* ---------------- Modal focus guard ---------------- */
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Tab" || !backdrop.classList.contains("open")) return;
+  const focusables=backdrop.querySelectorAll('button,a,[tabindex]:not([tabindex="-1"])');
+  if(!focusables.length) return;
+  const first=focusables[0], last=focusables[focusables.length-1];
+  if(e.shiftKey && document.activeElement===first){e.preventDefault();last.focus();}
+  else if(!e.shiftKey && document.activeElement===last){e.preventDefault();first.focus();}
 });
-modalClose.addEventListener('click', closeModal);
-backdrop.addEventListener('click', e=>{ if(e.target===backdrop) closeModal(); });
-document.addEventListener('keydown', e=>{ if(e.key==='Escape' && backdrop.classList.contains('open')) closeModal(); });
 
 })();
 </script>
 </body>
 </html>
+
